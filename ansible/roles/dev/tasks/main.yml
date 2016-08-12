@@ -1,0 +1,62 @@
+# Git
+- name: Git is present
+  apt:
+    name: git
+    state: latest
+    force: yes
+  tags: [dev]
+
+# PHP 7
+- name: Add PHP 7 repository and update apt cache
+  apt_repository:
+    repo: ppa:ondrej/php
+    update_cache: yes
+    state: present
+  tags: [dev]
+
+- name: PHP 7 is present
+  apt:
+    name: php7.0
+    state: latest
+    force: yes
+  tags: [dev]
+
+- name: PHP 7 FPM is present
+  apt:
+    name: php7.0-fpm
+    state: latest
+    force: yes
+  tags: [dev]
+
+- name: PHP 7 MYSQL is present
+  apt:
+    name: php7.0-mysql
+    state: latest
+    force: yes
+  tags: [dev]
+
+# Composer.
+- name: download composer
+  get_url:
+    url: https://getcomposer.org/installer
+    dest: /tmp/installer
+  tags: composer
+
+- name: install composer
+  shell: cat /tmp/installer | php -- --install-dir=/usr/local/bin
+  args:
+    creates: /usr/local/bin/composer
+  tags: composer
+
+- name: rename composer.phar to composer
+  shell: mv /usr/local/bin/composer.phar /usr/local/bin/composer
+  args:
+    creates: /usr/local/bin/composer
+  tags: composer
+
+- name: make composer executable
+  file:
+    path: /usr/local/bin/composer
+    mode: a+x
+    state: file
+  tags: composer
