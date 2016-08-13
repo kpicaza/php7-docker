@@ -1,4 +1,3 @@
-
 nginx:
     build: ./nginx/
     ports:
@@ -20,7 +19,7 @@ php:
 app:
     image: php:7.0-fpm
     volumes:
-        - ./app:/var/www/html
+        - ./web/:/var/www/html/
     command: "true"
 
 mysql:
@@ -42,7 +41,7 @@ data:
 phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
-        - 8080:80
+        - 8081:80
     links:
         - mysql
     environment:

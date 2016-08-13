@@ -23,8 +23,10 @@ Move to your workspace and clone repository.
 
 ## Usage
 
-Start container and open a browser at [http://localhost/info.php](http://localhost/info.php), served files are 
-allocated inside `app/` folder.
+Start container and open a browser at [http://10.100.199.200/info.php](http://10.100.199.200/info.php) (You can change it on Vagrantfile), served files are 
+allocated inside `web/` folder.
+
+PhpMyAdmin will stay at port `8081`, [http://10.100.199.200:8081](http://10.100.199.200:8081)
     
 ### Start:
 
